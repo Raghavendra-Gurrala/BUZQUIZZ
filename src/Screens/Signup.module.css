@@ -61,7 +61,7 @@ label {
     display: block;
     width: 20%;
     padding: 10px;
-    background-color: #007bff;
+    background-color: #00bfff;
     color: #fff;
     font-weight: bold;
     border: none;
@@ -72,14 +72,4 @@ label {
 
 .button:hover {
     background-color: #0056b3;
-}
-
-.signuptag{
-    color: rgb(3, 9, 97);
-    font-size: 14px;
-    font-family: Arial, Helvetica, sans-serif;
-    justify-content: center;
-    align-items: center;
-    display: flex;
-    margin-top: 20px;
 }
