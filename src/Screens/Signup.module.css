@@ -1,25 +1,23 @@
 /* LoginPage.module.css */
 .container {
     font-family: Arial, sans-serif;
-    background-image: url('../assets/Background.jpg');
-    background-repeat: no-repeat;
-    background-position: center;
-    background-size: cover;
+    background: linear-gradient(255deg, #D1C1FF, #627bf7);
     margin: 0;
     padding: 0;
     display: flex;
-    justify-content: center;
+    justify-content: space-around;
     align-items: center;
     height: 100vh;
 }
 
 .form {
-    background: linear-gradient(#77c0f5, #54eefc);
+    background: linear-gradient(45deg, #9775ff, #fff);
+    position: absolute;
     padding: 20px;
     border-radius: 5px;
     box-shadow: 0 0 10px rgba(131, 243, 255, 0.2);
     width: 30%;
-    height: 50%;
+    height: 55%;
 }
 
 .form h1 {
@@ -48,7 +46,7 @@ label {
     padding: 8px;
     border: 1px solid #03414a;
     border-radius: 3px;
-    background-color: rgb(147, 229, 243);
+    background-color: transparent;
 }
 
 .buttoninput {
@@ -61,15 +59,33 @@ label {
     display: block;
     width: 20%;
     padding: 10px;
-    background-color: #00bfff;
+    background-color: #A268FF;
     color: #fff;
     font-weight: bold;
     border: none;
     border-radius: 3px;
     cursor: pointer;
+    margin-top: 10px;
     font-family: cursive;
 }
 
 .button:hover {
-    background-color: #0056b3;
+    background-color: rgb(126, 84, 255);
+}
+
+.signintag {
+    color: rgb(3, 9, 97);
+    font-size: 14px;
+    font-family: Arial, Helvetica, sans-serif;
+    justify-content: center;
+    align-items: center;
+    display: flex;
+    margin-top: 20px;
+}
+
+.notification-custom {
+    background-color: yellow;
+    border: 2px solid orange;
+    color: black;
+    font-size: 16px;
 }

@@ -1,6 +1,9 @@
 import React, { useState } from "react";
 import styles from "./Login.module.css"; // Import the CSS module
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import { signInWithEmailAndPassword } from "firebase/auth";
+import { auth } from "../Configurations/Firebase";
+import { notification } from "antd";
 
 function Login() {
   const [email, setEmail] = useState("");
@@ -16,15 +19,52 @@ function Login() {
     setPassword(e.target.value);
   };
 
-  const handlesignup = () => {
-    navigate("./Signup");
-  };
+  // const handlesignup = () => {
+  //   navigate("./signup");
+  // };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    // Add your Firebase authentication logic here
-    console.log("Email:", email);
-    console.log("Password:", password);
+
+    signInWithEmailAndPassword(auth, email, password)
+      .then((userCredential) => {
+        // Signed in
+        const user = userCredential.user;
+        sessionStorage.setItem("token", user.accessToken);
+        sessionStorage.setItem("user", JSON.stringify(user));
+
+        navigate("/");
+        console.log(user);
+        notification.success({
+          message: "Signin Successful",
+          description: "You have successfully signed in!",
+          style: {
+            fontFamily: "Georgia",
+            fontWeight: "bold",
+            fontSize: 14,
+          },
+        });
+      })
+      .catch((error) => {
+        const errorCode = error.code;
+        const errorMessage = error.message;
+
+        // Check if the error code indicates that the user does not exist
+        if (errorCode === "auth/user-not-found") {
+          notification.error({
+            message: "User does not exist",
+            description: "Please sign up first.",
+            style: {
+              fontFamily: "Georgia",
+              fontWeight: "bold",
+              fontSize: 14,
+            },
+          });
+        } else if (errorCode === "auth/user-not-found") {
+          // Handle other authentication errors
+          console.log(errorCode, errorMessage);
+        }
+      });
   };
 
   return (
@@ -62,17 +102,17 @@ function Login() {
           </button>
         </div>
         <div className={styles.signuptag}>
-          Don't have Account?{" "}
-          <span
+          Don't have an Account?{" "}
+          <Link
+            to="/signup"
             style={{
               textDecorationLine: "underline",
               cursor: "pointer",
               fontWeight: "bold",
             }}
-            onClick={handlesignup}
           >
             Signup here
-          </span>
+          </Link>
         </div>
       </form>
     </div>
